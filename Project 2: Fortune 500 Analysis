@@ -59,7 +59,7 @@ VALUES
 ---
 
 --1. Determines the leading company in each industry based on Revenue
-SELECT industry, company_name, MAX(revenue) AS revenue
+SELECT industry AS "Industry", company_name AS "Leading Enterprise", MAX(revenue) AS "Revenue"
 FROM fortune_companies
 GROUP BY industry
 ORDER BY MAX(revenue) DESC;
