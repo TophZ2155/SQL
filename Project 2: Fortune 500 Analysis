@@ -77,7 +77,8 @@ CASE
 WHEN healthcare_benefits =1 AND paid_time_off_days >14 AND maternity_leave_weeks >15 THEN 1
 WHEN healthcare_benefits =1 AND paid_time_off_days >10 AND maternity_leave_weeks >12 THEN 2
 ELSE 3
-END;
+END,
+industry;
 
 --3. Determines the size of each company based on employee headcount
 SELECT company_name AS "Company Name", employees AS "True Size",
