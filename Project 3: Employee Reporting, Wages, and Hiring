@@ -1,0 +1,80 @@
+CREATE TABLE employees (
+    id INTEGER PRIMARY KEY,
+    e_id INTEGER,
+    first TEXT,
+    last TEXT,
+    title TEXT);
+    
+INSERT INTO employees (e_id, first, last, title)
+VALUES (1, "Mel", "Charter", "QA Tester");
+INSERT INTO employees (e_id, first, last, title)
+VALUES (2, "Gabi", "Welsh", "Manager");
+INSERT INTO employees (e_id, first, last, title)
+VALUES (3, "Kristof", "Smith", "Support Specialist");
+INSERT INTO employees (e_id, first, last, title)
+VALUES (4, "Oli", "Via", "Intern");
+
+CREATE TABLE report (
+    id INTEGER PRIMARY KEY,
+    report1_id INTEGER,
+    report2_id INTEGER);
+
+INSERT INTO report (report1_id, report2_id)
+VALUES(1, 2);
+INSERT INTO report (report1_id, report2_id)
+VALUES(3, 1);
+INSERT INTO report (report1_id, report2_id)
+VALUES(4, 3);
+
+CREATE TABLE department (
+    id INTEGER PRIMARY KEY,
+    name TEXT,
+    dept TEXT,
+    salary INTEGER);
+
+INSERT INTO department (name, dept, salary)
+VALUES("Manager", "Admin", 100000);
+INSERT INTO department (name, dept, salary)
+VALUES("QA Tester", "Product", 80000);
+INSERT INTO department (name, dept, salary)
+VALUES("Support Specialist", "Customer Support", 50000);
+INSERT INTO department (name, dept, salary)
+VALUES("Intern", "Adjunct", 30000);
+
+---
+
+--Displays employee information by order of last name
+SELECT employees.last AS Last, employees.first AS First, employees.title AS Position, department.dept AS Department, department.salary AS Wage
+FROM employees
+JOIN department
+ON employees.title=department.name
+ORDER BY employees.last;
+
+--Displays each employee's direct superior by order of first name
+SELECT e1.first AS Reporter, e2.first AS Superior
+FROM report
+JOIN employees AS e2
+ON e1.id=report1_id
+JOIN employees AS e1
+ON e2.id=report2_id
+ORDER BY e1.first;
+
+--Displays the total company cost for wages per department by order of Wage Cost
+SELECT dept AS Department, SUM(salary) AS "Wage Cost"
+FROM department
+GROUP BY dept
+ORDER BY "Wage Cost" DESC;
+
+--Displays each department's remaining budget from 100000 allowance, whether an additional hire is allowed, and the amount of new hires available depending on wage amount by order of remaining budget
+SELECT dept AS Department, (100000-salary) AS "Remaining Budget", 
+CASE WHEN (100000-salary) >=50000 THEN "Additional Hire Allowed"
+ELSE "At Budget Capacity"
+END AS "Additional Employee Allowance",
+CASE WHEN (100000-salary) >=50000 THEN ROUND((100000-salary)/50000)
+ELSE 0
+END AS "Additional 50K Wage Hires",
+CASE WHEN (100000-salary) >=50000 THEN ROUND((100000-salary)/30000)
+ELSE 0
+END AS "Additional 30K Wage Hires"
+FROM department
+ORDER BY "Remaining Budget" DESC;
