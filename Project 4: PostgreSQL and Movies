@@ -67,8 +67,7 @@ WHERE type ='Movie';
 SELECT MAX(DATE(date_added))
 FROM "netflix_titles_info";
 
-
----List all the movies and TV shows in alphabetical order
+--List all the movies and TV shows in alphabetical order
 SELECT title
 FROM "netflix_titles_info"
 ORDER BY title ASC;
