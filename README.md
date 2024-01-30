@@ -1,11 +1,11 @@
 # Tophe Zuelke's SQL Portfolio
-#### Welcome to my SQL Portfolio! This code repository contains past and ongoing SQL I've written. Feel free to take a look and reach out via email if you have any questions.
+Welcome to my SQL Portfolio! This code repository contains past and ongoing SQL I've written. Feel free to take a look and reach out via email if you have any questions.
 
 > [!NOTE] 
 > Some of this code, if in-progress, will not be entirely complete or accurate as I work through projects and make changes/corrections to code. I'll do my best to indicate this in the title of the project.
 
 # Contact Information
-#### toph.zuelke@gmail.com
+toph.zuelke@gmail.com
 
 ---
 # Project List Details
