@@ -18,6 +18,8 @@ This project demonstrates basic SQL functionality by querying data from a distri
 
 > SQL Dialect: `Standard`
 
+> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%201%3A%20Superstore%20Database)
+
 ### Project 2: Fortune 500 Analysis[^1]
 This project demonstrates advanced SQL functionality by querying data from a descriptive database of Fortune 500 companies. Detailed tasks included in the code but encompass:
 1. determining industry leaders,
@@ -26,6 +28,8 @@ This project demonstrates advanced SQL functionality by querying data from a des
 > Includes queries: `SUM`, `MAX`, `ROUND`, `OVER`, `CASE`, `AND`, `OR`, `GROUP BY`, `HAVING`, `ORDER BY`
 
 > SQL Dialect: `Standard`
+
+> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%202%3A%20Fortune%20500%20Analysis)
 
 ### Project 3: Employee Reporting, Wages, and Hiring[^1]
 This project demonstrates relational querying with SQL "join" functions using a self-made database that includes employee information, department information, and company organization information. Detailed tasks are included in the code but encompass:
@@ -36,6 +40,8 @@ This project demonstrates relational querying with SQL "join" functions using a 
 
 > SQL Dialect: `Standard`
 
+> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%203%3A%20Employee%20Reporting%2C%20Wages%2C%20and%20Hiring)
+
 ### Project 4: PostgreSQL and Movies
 This project demonstrates the various basic and advanced SQL functionality in the PostgreSQL dialect using a database of Netflix movies and TV shows. Detailed tasks are included in the code but encompass:
 1.  counting and ordering movies based on specific details,
@@ -44,5 +50,7 @@ This project demonstrates the various basic and advanced SQL functionality in th
 > Includes queries: `COUNT`, `MAX(DATE()`, `JOIN~ON`, `AND`, `WHERE`, `ORDER BY`
 
 > SQL Dialect: `PostgreSQL`
+
+> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%204%3A%20PostgreSQL%20and%20Movies)
 
 [^1]: Data in this project is fabricated and may not reflect actual names, values, or other included information.
