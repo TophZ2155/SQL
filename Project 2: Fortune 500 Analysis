@@ -1,5 +1,5 @@
 CREATE TABLE fortune_companies (
-    company_id INTEGER PRIMARY KEY,
+    company_id INTEGER PRIMARY KEY AUTO_INCREMENT,
     company_name TEXT,
     industry TEXT,
     revenue REAL,
