@@ -53,7 +53,7 @@ This project demonstrates the various basic and advanced SQL functionality in th
 
 > Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%204%3A%20PostgreSQL%20and%20Movies)
 
-### Project 5: Customer and Order Analytics
+### Project 5: Customer and Order Analytics[^2]
 This project demonstrates statistical queries using multiple tables within a singular database using SQLite Studio. Detailed tasks are included in the code but encompass:
 1.  counting the number of orders within a specific month and/or product,
 2.  narrowing query results for a specific month's product cost,
@@ -65,3 +65,4 @@ This project demonstrates statistical queries using multiple tables within a sin
 > Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%205%3A%20Customer%20and%20Order%20Analytics)
 
 [^1]: Data in this project is fabricated and may not reflect actual names, values, or other included information.
+[^2]: Database too large to include within the code. 
