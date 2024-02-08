@@ -1,0 +1,50 @@
+--Number of orders placed in January
+SELECT COUNT (orderID)
+FROM BIT_DB.JanSales
+WHERE length(orderid)=6
+AND orderid <> 'Order ID';
+
+--Number of order placed in January that are iPhones
+SELECT COUNT(orderid)
+FROM BIT_DB.JanSales
+WHERE Product='iPhone'
+AND length(orderid) = 6
+AND orderid <> 'Order ID';
+
+--All account numbers for the orders placed in February
+SELECT distinct acctnum
+FROM BIT_DB.customers AS cu
+INNER JOIN BIT_DB.FebSales AS fs
+ON cu.order_id=fs.orderID
+WHERE LENGTH(orderID)=6
+AND orderID <> 'Order ID'
+ORDER BY acctnum DESC;
+
+--Price of the cheapest product sold in January
+SELECT DISTINCT Product, price
+FROM BIT_DB.JanSales
+WHERE price 
+IN (SELECT MIN(price) FROM BIT_DB.JanSales);
+
+--Revenue for each product sold in January
+SELECT ROUND(sum(quantity)*price,0) as revenue
+,product
+FROM BIT_DB.JanSales
+GROUP BY product
+ORDER BY revenue DESC;
+
+--Type, quantity, and revenue of products sold at a specific address
+SELECT product, SUM(quantity) AS number, ROUND(SUM(quantity)*price,0) AS revenue
+FROM BIT_DB.FebSales
+WHERE location='548 Lincoln St, Seattle, WA 98101'
+GROUP BY product
+ORDER BY revenue DESC;
+
+--Average spending of customers who ordered more than 2 products in February
+SELECT COUNT (DISTINCT cu.acctnum) AS number, ROUND(AVG(quantity*price),2) AS revenue
+FROM BIT_DB.customers AS cu
+LEFT JOIN BIT_DB.FebSales AS fs
+ON cu.order_id=fs.orderID
+WHERE quantity >2
+AND LENGTH(orderID)=6
+AND orderID <> 'Order ID';
