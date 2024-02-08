@@ -62,6 +62,6 @@ This project demonstrates statistical queries using multiple tables within a sin
 
 > SQL Dialect: `Standard`
 
-> Full Query: [View]()
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%205%3A%20Customer%20and%20Order%20Analytics)
 
 [^1]: Data in this project is fabricated and may not reflect actual names, values, or other included information.
