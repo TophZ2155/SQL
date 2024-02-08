@@ -18,7 +18,7 @@ This project demonstrates basic SQL functionality by querying data from a distri
 
 > SQL Dialect: `Standard`
 
-> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%201%3A%20Superstore%20Database)
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%201%3A%20Superstore%20Database)
 
 ### Project 2: Fortune 500 Analysis[^1]
 This project demonstrates advanced SQL functionality by querying data from a descriptive database of Fortune 500 companies. Detailed tasks included in the code but encompass:
@@ -29,7 +29,7 @@ This project demonstrates advanced SQL functionality by querying data from a des
 
 > SQL Dialect: `Standard`
 
-> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%202%3A%20Fortune%20500%20Analysis)
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%202%3A%20Fortune%20500%20Analysis)
 
 ### Project 3: Employee Reporting, Wages, and Hiring[^1]
 This project demonstrates relational querying with SQL "join" functions using a self-made database that includes employee information, department information, and company organization information. Detailed tasks are included in the code but encompass:
@@ -40,7 +40,7 @@ This project demonstrates relational querying with SQL "join" functions using a 
 
 > SQL Dialect: `Standard`
 
-> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%203%3A%20Employee%20Reporting%2C%20Wages%2C%20and%20Hiring)
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%203%3A%20Employee%20Reporting%2C%20Wages%2C%20and%20Hiring)
 
 ### Project 4: PostgreSQL and Movies
 This project demonstrates the various basic and advanced SQL functionality in the PostgreSQL dialect using a database of Netflix movies and TV shows. Detailed tasks are included in the code but encompass:
@@ -51,6 +51,17 @@ This project demonstrates the various basic and advanced SQL functionality in th
 
 > SQL Dialect: `PostgreSQL`
 
-> Full Database: [View](https://github.com/TophZ2155/SQL/blob/main/Project%204%3A%20PostgreSQL%20and%20Movies)
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%204%3A%20PostgreSQL%20and%20Movies)
+
+### Project 5: Customer and Order Analytics
+This project demonstrates statistical queries using multiple tables within a singular database using SQLite Studio. Detailed tasks are included in the code but encompass:
+1.  counting the number of orders within a specific month and/or product,
+2.  narrowing query results for a specific month's product cost,
+3.  revenue of items within a specific month, at a specific location, or for accounts above certain purchase quantities.
+> Includes queries: `COUNT`, `DISTINCT`, `JOIN~ON`, `AND`, `WHERE`, `LENGTH~<>`, `IN`, `GROUP BY`, `ORDER BY`
+
+> SQL Dialect: `Standard`
+
+> Full Query: [View]()
 
 [^1]: Data in this project is fabricated and may not reflect actual names, values, or other included information.
