@@ -48,3 +48,9 @@ ON cu.order_id=fs.orderID
 WHERE quantity >2
 AND LENGTH(orderID)=6
 AND orderID <> 'Order ID';
+
+--Returns the product and quantity sold for any location for "Los Angeles" in February
+SELECT product, SUM(quantity)
+FROM BIT_DB.FebSales
+WHERE location LIKE '%Los Angeles%'
+GROUP BY product;
