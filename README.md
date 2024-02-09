@@ -58,7 +58,7 @@ This project demonstrates statistical queries using multiple tables within a sin
 1.  counting the number of orders within a specific month and/or product,
 2.  narrowing query results for a specific month's product cost,
 3.  revenue of items within a specific month, at a specific location, or for accounts above certain purchase quantities.
-> Includes queries: `COUNT`, `DISTINCT`, `JOIN~ON`, `AND`, `WHERE`, `LENGTH~<>`, `IN`, `GROUP BY`, `ORDER BY`
+> Includes queries: `COUNT`, `DISTINCT`, `JOIN~ON`, `LIKE~%`, `AND`, `WHERE`, `LENGTH~<>`, `IN`, `GROUP BY`, `ORDER BY`
 
 > SQL Dialect: `Standard`
 
