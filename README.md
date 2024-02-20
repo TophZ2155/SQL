@@ -64,5 +64,17 @@ This project demonstrates statistical queries using multiple tables within a sin
 
 > Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%205%3A%20Customer%20and%20Order%20Analytics)
 
+### Project 6: Spotify Data Exploration[^3]
+This project uses real data from Spotify's Top 50 Songs in 2021 database. It demonstrates primarily my ability to follow both prescribed tasks as well as explore data in self-generated analysis. Detailed tasks are included in the code but encompass:
+1.  averaging stastical properties of songs, artists, etc.,
+2.  categorizing songs, artists, etc. based on parameters to provide recommendations,
+3.  generating "snapshot" statistics or playlists for hypothetical clientele repuests.
+> Includes queries: `COUNT`, `CASE`, `AND`, `WHERE`, `IN`, `GROUP BY`, `HAVING`, `ORDER BY`, `LIMIT`
+
+> SQL Dialect: `Standard`
+
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%206%3A%20Spotify%20Data%20Exploration) 
+
 [^1]: Data in this project is fabricated and may not reflect actual names, values, or other included information.
 [^2]: Database too large to include within the code. 
+[^3]: Database can be found at [this link](https://www.kaggle.com/datasets/equinxx/spotify-top-50-songs-in-2021)
