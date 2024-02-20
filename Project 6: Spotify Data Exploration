@@ -1,0 +1,123 @@
+#The database table used to query this information was created using the following SQL:
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+song_key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+song_mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness decimal(8,7) NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL )
+
+#Data was then imported via .csv file (https://www.kaggle.com/datasets/equinxx/spotify-top-50-songs-in-2021)
+#Data queries were then run on the data as follows:
+
+--PRESCRIBED PRACTICE QUESTIONS (4)
+--1. What is the average danceability for each artist?
+SELECT artist_name, ROUND(AVG(danceability),3) AS typ_danceability
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY typ_danceability DESC;
+
+--2. Who are the top 10 artists based on popularity?
+SELECT artist_name, ROUND(AVG(popularity),2) AS avg_pop
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY avg_pop DESC
+LIMIT 10;
+
+SELECT artist_name, ROUND(AVG(popularity),0) AS avg_pop, CASE
+WHEN  ROUND(AVG(popularity),0) >=90 THEN 'Popular'
+WHEN  ROUND(AVG(popularity),0) >=80 THEN 'Mainstream'
+ELSE 'Breaching'
+END AS 'rank_pop'
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY avg_pop DESC;
+
+--3. What artist released the longest song? 
+SELECT artist_name, ROUND(CAST(duration_ms AS REAL)/60000,2) AS duration, track_name
+FROM BIT_DB.Spotifydata
+ORDER BY duration_ms DESC;
+
+--4. What's the average tempo, duration, acousticness, speechiness of the 10 most popular songs?
+SELECT 
+    ROUND(AVG(s.danceability), 2) AS Dance,
+    ROUND(AVG(s.energy), 2) AS Energy,
+    ROUND(AVG(s.loudness), 2) AS Loud,
+    ROUND(AVG(s.acousticness), 2) AS Acoustic,
+    ROUND(AVG(s.speechiness), 2) AS Speechy,
+    ROUND(AVG(s.liveness), 2) AS Live,
+    ROUND(AVG(s.valence), 2) AS Valence,
+    ROUND(AVG(s.tempo), 2) AS Tempo
+FROM BIT_DB.Spotifydata s
+WHERE s.artist_name IN (
+        SELECT artist_name
+        FROM BIT_DB.Spotifydata
+        GROUP BY artist_name
+        ORDER BY AVG(popularity) DESC
+        LIMIT 10);
+
+--SELF-GENERATED QUESTIONS AND ANALYSIS (5)
+--1. A client wants a playlist with only the most upbeat songs. What songs would be best for this based on danceability, energy, and tempo?
+SELECT track_name, CASE
+WHEN danceability >.75 AND energy >.75 AND tempo >100 THEN 'High'
+WHEN danceability >.50 AND energy >.50 AND tempo >75 THEN 'Medium'
+ELSE 'Low'
+END AS upbeat_rating
+FROM BIT_DB.Spotifydata
+ORDER BY CASE
+WHEN danceability >.75 AND energy >.75 AND tempo >100 THEN 1
+WHEN danceability >.50 AND energy >.50 AND tempo >75 THEN 2
+ELSE 3
+END;
+
+--2. A small-group band client has a small space with limited instrumental capability. Which new songs would be best based on acousticness and loudness?
+SELECT track_name, artist_name, acousticness, loudness
+,CASE 
+WHEN acousticness >.75 AND loudness <-7.5 THEN 'Recommended'
+WHEN acousticness >.50 AND loudness <-5.0 THEN 'Alternative'
+ELSE 'Not Recommended'
+END AS recommendation
+FROM BIT_DB.Spotifydata
+WHERE recommendation ='Recommended' OR recommendation ='Alternative'
+ORDER BY acousticness DESC;
+
+--3. A client wants to know the general mood of popular music in 2021. They also want to know what 5 artists contributed most to this value. (If +, then 5 most +; if -, vice versa)
+SELECT ROUND(AVG(valence),2) AS mood
+FROM BIT_DB.Spotifydata;
+
+SELECT artist_name, AVG(valence) AS mood
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY mood DESC
+LIMIT 5;
+
+--4. A client wants a playlist of popular music for their company party; however, they want to avoid "speechy" music. Give them a 15-song 'starter' playlist as well as some artist recommendations.
+SELECT track_name, speechiness
+FROM BIT_DB.Spotifydata
+WHERE speechiness <.10
+ORDER BY speechiness ASC
+LIMIT 15;
+
+SELECT artist_name, AVG(speechiness) AS speechy
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+HAVING speechy <=0.05
+ORDER BY speechy;
+
+--5. A producer wants to know which mode popular songs are more commonly in to decide which mode to produce his next song in. 
+SELECT 
+SUM(CASE WHEN song_mode = 1 THEN 1 ELSE 0 END) AS major,
+SUM(CASE WHEN song_mode = 0 THEN 1 ELSE 0 END) AS minor
+FROM BIT_DB.Spotifydata;
