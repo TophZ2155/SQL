@@ -68,7 +68,7 @@ This project demonstrates statistical queries using multiple tables within a sin
 This project uses real data from Spotify's Top 50 Songs in 2021 database. It demonstrates primarily my ability to follow both prescribed tasks as well as explore data in self-generated analysis. Detailed tasks are included in the code but encompass:
 1.  averaging stastical properties of songs, artists, etc.,
 2.  categorizing songs, artists, etc. based on parameters to provide recommendations,
-3.  generating "snapshot" statistics or playlists for hypothetical clientele repuests.
+3.  generating "snapshot" statistics or playlists for hypothetical clientele requests.
 > Includes queries: `COUNT`, `CASE`, `AND`, `WHERE`, `IN`, `GROUP BY`, `HAVING`, `ORDER BY`, `LIMIT`
 
 > SQL Dialect: `Standard`
