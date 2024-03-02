@@ -71,7 +71,7 @@ SELECT DISTINCT (name) AS genres
 FROM chinook.genres
 ORDER BY name;
 
---2Sales: I'm running an income report for year to year. Can you display the income for each year and its proportion to total revenue?
+--2Sales: I'm running a revenue report for year to year. Can you display the revenue for each year and its proportion to total revenue?
 SELECT
  STRFTIME ('%Y', InvoiceDate) AS year,
  ROUND(SUM(Total),2) AS revenue,
