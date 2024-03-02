@@ -1,0 +1,97 @@
+#HR
+--1HR: Please create an employee reporting table.
+SELECT 
+ e.FirstName, 
+ e.Title, 
+ m.FirstName, 
+ m.Title
+FROM chinook.employees e
+LEFT JOIN chinook.employees m
+    ON e.ReportsTo=m.employeeID;
+    
+--2HR: We're sending a Christmas card in addition to a holiday bonus. Please make a table of the employee name and full address.
+SELECT 
+ FirstName || ' ' || LastName AS employee_name,
+ Address || ', ' || City || ', ' || State || ', ' || PostalCode AS employee_address
+FROM chinook.employees;
+
+--3HR: What is the start year and month of each employee? Please categorize them by 'Spring' or 'Fall' hire.
+SELECT 
+ FirstName || ' ' || LastName AS name,
+ STRFTIME('%Y', HireDate) AS year,
+ STRFTIME('%m', HireDate) AS month,
+ CASE
+  WHEN STRFTIME('%m', HireDate) <='06' THEN 'Spring'
+  ELSE 'Fall'
+  END AS hire
+FROM chinook.employees;
+
+#MARKETING
+--1Marketing: We would like to see the customer base distributed by our region map. Any non-US customers should be in one category.
+SELECT 
+ CASE
+  WHEN State IN ('NY','PA','OH','WV','VA','MD','DE','NJ','CT','RI','MA','ME','NH','VT') THEN 'East'
+  WHEN State IN ('ND','SD','NE','KS','MN','IA','MO','WI','IL','MI','IN','KY') THEN 'Midland'
+  WHEN State IN ('NM','TX','OK','AR','LA','MS','TN','AL','NC','SC','GA','FL') THEN 'South'
+  WHEN State IN ('CO','AK','HI','WA','OR','CA','ID','NV','AZ','UT','MT','WY') THEN 'West'
+  ELSE 'International'
+  END AS region,
+ COUNT(customerID) AS cust_base
+FROM chinook.customers
+GROUP BY region;
+
+--2Marketing: We want to run a special campaign for international buyers. What are their emails? We've also noticed that the email domains "jetbrains", "rogers", and "jubii" aslways go to spam, so please exclude them from the list.
+SELECT 
+ CASE
+  WHEN State IN ('NY','PA','OH','WV','VA','MD','DE','NJ','CT','RI','MA','ME','NH','VT') THEN 'East'
+  WHEN State IN ('ND','SD','NE','KS','MN','IA','MO','WI','IL','MI','IN','KY') THEN 'Midland'
+  WHEN State IN ('NM','TX','OK','AR','LA','MS','TN','AL','NC','SC','GA','FL') THEN 'South'
+  WHEN State IN ('CO','AK','HI','WA','OR','CA','ID','NV','AZ','UT','MT','WY') THEN 'West'
+  ELSE 'International'
+  END AS region,
+ email
+FROM chinook.customers
+WHERE region ='International'
+AND email NOT LIKE '%jetbrains%'
+AND email NOT LIKE '%rogers%'
+AND email NOT LIKE '%jubii%'
+ORDER BY email;
+
+--3Marketing: We're thinking of having Support members send follow-up emails with some stuff we've produced. We want to trial it out on the member with the largest amount of customers. Who would that person be?
+SELECT COUNT(c.supportrepid) AS client_base, e.LastName, e.FirstName
+FROM chinook.employees e
+JOIN chinook.customers c
+    ON e.employeeid=c.supportrepid
+GROUP BY c.supportrepid
+LIMIT 1;
+
+#SALES
+--1Sales: I'm in a client meeting right now. Can you send me a list of all genres of music we sell?
+SELECT DISTINCT (name) AS genres
+FROM chinook.genres
+ORDER BY name;
+
+--2Sales: I'm running an income report for year to year. Can you display the income for each year and its proportion to total revenue?
+SELECT
+ STRFTIME ('%Y', InvoiceDate) AS year,
+ ROUND(SUM(Total),2) AS revenue,
+ ROUND((SUM(Total) / SUM(SUM(Total)) OVER ()) * 100,2) AS portion
+FROM chinook.invoices
+GROUP BY STRFTIME('%Y', InvoiceDate)
+
+--3Sales: We're going to introduce a tiered sales/support system for our international customer bases. We'd like to rank the countries by revenue and then tertile them into 'Gold', 'Silver', and 'Bronze'.
+wiTH rev_CTE AS (
+    SELECT BillingCountry, ROUND(SUM(total),2) as revenue
+    FROM invoices
+    GROUP BY BillingCountry
+    ORDER BY revenue DESC
+)
+SELECT 
+ BillingCountry, 
+ NTILE(3) OVER (ORDER BY revenue DESC) AS tier,
+ CASE
+     WHEN NTILE(3) OVER (ORDER BY revenue DESC) =1 THEN 'Gold'
+     WHEN NTILE(3) OVER (ORDER BY revenue DESC) =2 THEN 'Silver'
+     WHEN NTILE(3) OVER (ORDER BY revenue DESC) =3 THEN 'Bronze'
+     END AS tier_name
+FROM rev_CTE;
