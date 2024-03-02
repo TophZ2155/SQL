@@ -84,7 +84,18 @@ This project uses a digital media store database with 11 tables connecting vario
 
 > SQL Dialect: `Standard`
 
-> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%207%3A%20Digital%20Media%20Store%20%7C%20Part%201--Fulfilling%20Analysis%20Requests) 
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%207%3A%20Digital%20Media%20Store%20%7C%20Part%201--Fulfilling%20Analysis%20Requests)
+
+### Project 8: Digital Media Store | Part2--Self-generated Analysis[^4]
+This project continues the analysis from Project 7 which uses a digital media store database with 11 tables connecting various sales details including product information (e.g artist, track, genre), invoice information (billing, pricing, order information), and customer and employee information. It demonstrates my ability to generate my own ideas and analyses from a dataset which may either be 1) helpful to the company department that needs it and/or 2) allows me to particpate in discussions about needed analyses with department individuals. Detailed tasks are included in the code but encompass:
+1.  **HR**: company hierarchies, employee contact information, and hiring- and legacy-datetime information,
+2.  **Marketing**: regional customer-base distributions, filtered email lists for new campaigns, and collaborative statistics,
+3.  **Sales**: product and item details, year-to-year revenue report with percent proportions, determining revenue-based tiers for implementing a tier-based system.
+> Includes queries: `COUNT`, `DISTINCT`, `CASE`, `NTILE`, `STRFTIME`, `JOIN~ON`, `WITH~AS`(CTEs), `OVER~()`, `||`, `NOT LIKE~%`, `GROUP BY`, `ORDER BY`, `LIMIT`
+
+> SQL Dialect: `Standard`
+
+> Full Query: [View](https://github.com/TophZ2155/SQL/blob/main/Project%208%3A%20Digital%20Media%20Store%20%7C%20Part%202--Self-generated%20Analysis)
 
 [^1]: Data in this project is fabricated and may not reflect actual names, values, or other included information.
 [^2]: Database too large to include within the code. 
