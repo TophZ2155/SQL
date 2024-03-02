@@ -80,7 +80,7 @@ FROM chinook.invoices
 GROUP BY STRFTIME('%Y', InvoiceDate)
 
 --3Sales: We're going to introduce a tiered sales/support system for our international customer bases. We'd like to rank the countries by revenue and then tertile them into 'Gold', 'Silver', and 'Bronze'.
-wiTH rev_CTE AS (
+WITH rev_CTE AS (
     SELECT BillingCountry, ROUND(SUM(total),2) as revenue
     FROM invoices
     GROUP BY BillingCountry
